@@ -6,7 +6,7 @@ type State = {
 
 export class App extends React.Component<State> {
   state: State = {
-    message: '',
+    message: 'Nothing was pressed yet',
   };
 
   handleKeyUp = (e: KeyboardEvent) => {
@@ -14,8 +14,6 @@ export class App extends React.Component<State> {
   };
 
   componentDidMount(): void {
-    this.setState({ message: 'Nothing was pressed yet' });
-
     document.addEventListener('keyup', this.handleKeyUp);
   }
 
