@@ -4,7 +4,7 @@
 
 Make the `App` a class component with `pressedKey` in the `state`.
 
-> Here is [the working version](https://mate-academy.github.io/react_keyboard/)
+> Here is [the working version](https://mate-kacademy.github.io/react_keyboard/)
 
 - before any key was pressed show the `Nothing was pressed yet` message;
 - when a key is pressed show a `The last pressed key is [key]` message;
