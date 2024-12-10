@@ -8,8 +8,8 @@ type StateProps = {
   key: string;
 };
 
-export class App extends React.Component<Props,  StateProps> {
-  state:  StateProps = {
+export class App extends React.Component<Props, StateProps> {
+  state: StateProps = {
     key: '',
   };
 
