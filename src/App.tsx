@@ -1,41 +1,71 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 
-interface AppState {
-  pressedKey: string | null;
-}
+// interface AppState {
+//   pressedKey: string;
+// }
 
-export class App extends Component<{}, AppState> {
-  constructor(props: {}) {
-    super(props);
+// export class App extends Component<{}, AppState> {
+//   state: AppState = {
+//     pressedKey: 'Nothing was pressed yet',
+//   };
 
-    this.state = {
-      pressedKey: 'Nothing was pressed yet',
+//   handleKeyUp = (event: KeyboardEvent) => {
+//     this.setState({ pressedKey: event.key });
+//   };
+
+//   componentDidMount() {
+//     document.addEventListener('keyup', this.handleKeyUp);
+//   }
+
+//   componentWillUnmount() {
+//     document.removeEventListener('keyup', this.handleKeyUp);
+//   }
+
+//   render() {
+//     const { pressedKey } = this.state;
+
+//     return (
+//       <div className="App">
+//         <p className="App__message">
+//           {pressedKey === 'Nothing was pressed yet'
+//             ? 'Nothing was pressed yet'
+//             : `The last pressed key is [${pressedKey}]`}
+//         </p>
+//       </div>
+//     );
+//   }
+// }
+
+// export default App;
+
+import React, { useEffect, useState } from 'react';
+
+export const App: React.FC = () => {
+  const [pressedKey, setPressedKey] = useState<string>(
+    'Nothing was pressed yet',
+  );
+
+  useEffect(() => {
+    const handleKeyUp = (event: KeyboardEvent) => {
+      setPressedKey(event.key);
     };
-  }
 
-  handleKeyUp = (event: KeyboardEvent) => {
-    this.setState({ pressedKey: event.key });
-  };
+    document.addEventListener('keyup', handleKeyUp);
 
-  componentDidMount() {
-    document.addEventListener('keyup', this.handleKeyUp);
-  }
+    return () => {
+      document.removeEventListener('keyup', handleKeyUp);
+    };
+  }, []);
 
-  componentWillUnmount() {
-    document.removeEventListener('keyup', this.handleKeyUp);
-  }
+  return (
+    <div className="App">
+      <p className="App__message">
+        {pressedKey === 'Nothing was pressed yet'
+          ? 'Nothing was pressed yet'
+          : `The last pressed key is [${pressedKey}]`}
+      </p>
+    </div>
+  );
+};
 
-  render() {
-    const { pressedKey } = this.state;
-
-    return (
-      <div className="App">
-        <p className="App__message">
-          {pressedKey === 'Nothing was pressed yet'
-            ? 'Nothing was pressed yet'
-            : `The last pressed key is [${pressedKey}]`}
-        </p>
-      </div>
-    );
-  }
-}
+export default App;
