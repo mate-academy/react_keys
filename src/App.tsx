@@ -6,7 +6,7 @@ type State = {
 
 export class App extends React.Component {
   state: Readonly<State> = {
-    key: 'Nothing was pressed yet',
+    key: '',
   };
 
   handleKey = () => {
@@ -16,13 +16,21 @@ export class App extends React.Component {
   };
 
   componentDidMount() {
-    this.handleKey()
+    this.handleKey();
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.handleKey);
   }
 
   render() {
     return (
       <div className="App">
-      <p className="App__message">The last pressed key is {this.state.key}</p>
+        <p className="App__message">
+          {this.state.key
+            ? `The last pressed key is [${this.state.key}]`
+            : 'Nothing was pressed yet'}
+        </p>
       </div>
     );
   }
