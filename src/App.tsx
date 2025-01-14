@@ -4,7 +4,7 @@ type State = {
   prevKey: string;
 };
 
-export class App extends React.Component<{}, State> {
+export class App extends React.PureComponent<{}, State> {
   state: State = {
     prevKey: '',
   };
